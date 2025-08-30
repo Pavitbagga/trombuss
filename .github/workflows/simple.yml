@@ -1,0 +1,42 @@
+name: simple-ci-cd
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Tests
+        run: pytest -q
+
+docker:
+  needs: ci
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+    - name: Login to Docker hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.pavitbagga1 }}
+        password: ${{ secrets.63BC5021042C659BB2ED43E0749D2B909F651B3C }}
+    - name: Build & push
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: true
+        tags: |
+          ${{ secrets.pavitbagga1 }}/spring-app:latest
+          ${{ secrets.pavitbagga1 }}/spring-app:${{}}
+    
