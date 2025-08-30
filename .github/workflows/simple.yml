@@ -29,16 +29,16 @@ docker:
     - name: Login to Docker hub
       uses: docker/login-action@v3
       with:
-        username: ${{ secrets.pavitbagga1 }}
-        password: ${{ secrets.63BC5021042C659BB2ED43E0749D2B909F651B3C }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build & push
       uses: docker/build-push-action@v6
       with:
         context: .
         push: true
         tags: |
-          ${{ secrets.pavitbagga1 }}/spring-app:latest
-          ${{ secrets.pavitbagga1 }}/spring-app:${{ p3oafp5NDCpu8YyGEVuB4YnjLW8ZZIdpJYwKqkhbjqo pavitagam2006@gmail.com }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/spring-app:latest
+          ${{ secrets.DOCKERHUB_USERNAME }}/spring-app:${{ p3oafp5NDCpu8YyGEVuB4YnjLW8ZZIdpJYwKqkhbjqo pavitagam2006@gmail.com }}
 
 deploy:
   needs: docker
