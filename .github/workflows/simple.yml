@@ -34,7 +34,7 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${{ p3oafp5NDCpu8YyGEVuB4YnjLW8ZZIdpJYwKqkhbjqo pavitagam2006@gmail.com }}
 
   deploy:
     needs: docker
